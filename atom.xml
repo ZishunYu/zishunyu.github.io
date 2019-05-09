@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Zishun&#39;s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.zishun.xyz/"/>
+  <updated>2019-05-09T21:42:08.715Z</updated>
+  <id>http://www.zishun.xyz/</id>
+  
+  <author>
+    <name>Zishun Yu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Optimizing Learning-Based Metric for Image Captioning</title>
+    <link href="http://www.zishun.xyz/2019/05/09/Discriminator/"/>
+    <id>http://www.zishun.xyz/2019/05/09/Discriminator/</id>
+    <published>2019-05-09T21:17:39.000Z</published>
+    <updated>2019-05-09T21:42:08.715Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;This is an additional work to &lt;a href=&quot;/2019/05/08/Self-critical/index.html&quot;&gt;previous post&lt;/a&gt;, SCST with SPICE. I was not
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://www.zishun.xyz/tags/NLP/"/>
+    
+      <category term="Image Captioning" scheme="http://www.zishun.xyz/tags/Image-Captioning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Self-critical Sequence Training for Image Captioning with SPICE</title>
+    <link href="http://www.zishun.xyz/2019/05/08/Self-critical/"/>
+    <id>http://www.zishun.xyz/2019/05/08/Self-critical/</id>
+    <published>2019-05-08T21:28:19.000Z</published>
+    <updated>2019-05-09T22:30:57.262Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;This is a project of interset and topic of this project is &lt;strong&gt;Self-critical Sequence Training for image captioning with
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://www.zishun.xyz/tags/NLP/"/>
+    
+      <category term="Image Captioning" scheme="http://www.zishun.xyz/tags/Image-Captioning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Issues with SPICE Package and Solution</title>
+    <link href="http://www.zishun.xyz/2019/05/07/SPICE/"/>
+    <id>http://www.zishun.xyz/2019/05/07/SPICE/</id>
+    <published>2019-05-07T19:35:43.000Z</published>
+    <updated>2019-05-09T22:28:03.899Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;I am recently doing a project which using reinforcement leanring to improve a NLP task, image captioning. In general, this
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://www.zishun.xyz/tags/NLP/"/>
+    
+      <category term="SPICE" scheme="http://www.zishun.xyz/tags/SPICE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2018 INFORMS Annual Meeting Talk</title>
+    <link href="http://www.zishun.xyz/2018/11/11/2018-INFORMS/"/>
+    <id>http://www.zishun.xyz/2018/11/11/2018-INFORMS/</id>
+    <published>2018-11-11T22:24:58.000Z</published>
+    <updated>2019-05-09T21:32:46.298Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;I was giving a talk on 2018 INFORMS annual meeting, Nov 04, 2018, at Phoenix, AZ. Topic of this talk is
+        
+      
+    
+    </summary>
+    
+    
+      <category term="DDPG" scheme="http://www.zishun.xyz/tags/DDPG/"/>
+    
+      <category term="Robot Control" scheme="http://www.zishun.xyz/tags/Robot-Control/"/>
+    
+  </entry>
+  
+</feed>
