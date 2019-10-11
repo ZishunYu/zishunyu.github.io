@@ -1,169 +1,135 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zishun Yu"><title>Issues with SPICE Package and Solution · Zishun's Blog</title><meta name="description" content="I am recently doing a project which using reinforcement leanring to improve a NLP task, image captioning. In general, this task requires a machine to "><meta name="keywords" content><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML" async></script><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">Perception</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">認識能力</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li></li><li><a href="/404.html"></a></li><li><a href="/index.html"></a></li><li><a href="/Blog/index.html" class="current">Blog</a></li><li><a href="/CV/index.html">CV</a></li><li class="soc"><a href="https://github.com/ZishunYu" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a class="a-post">Issues with SPICE Package and Solution</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-05-07</span></p><p class="post-abstract"></p><p><br></p>
-<p>I am recently doing a project which using reinforcement leanring to improve a NLP task, image captioning. In general, this task requires a machine to descripe image given to it. My project was inspired by the paper, <em>self-critical sequence training for image captioning</em> <span class="citation" data-cites="DBLP:journals/corr/RennieMMRG16">(Rennie et al. <a href="#ref-DBLP:journals/corr/RennieMMRG16" role="doc-biblioref">2016</a>)</span> (SCST). Model in SCST directly optimizing a widely used NLP evaluation metrics <strong>CIDEr</strong> <span class="citation" data-cites="vedantam2015cider">(Vedantam, Lawrence Zitnick, and Parikh <a href="#ref-vedantam2015cider" role="doc-biblioref">2015</a>)</span> and beats SOTA methods at that time.</p>
-<p>My interest was in trying some metrics which are reported better (maybe) than CIDEr. Because the reward function is very crucial for reinforcement learning. Therefore I choosed a varity of image captioning metrics to be directly optimized, including SPICE (semantic propositional image caption evaluation) <span class="citation" data-cites="anderson2016spice">(Anderson et al. <a href="#ref-anderson2016spice" role="doc-biblioref">2016</a>)</span>. However, I encountered some issue when using this package for reinfocement learning. This post would be descripting the issue I encountered and my solution. For full report of my image captioning project, see <a href="2019/05/08/Self-critical/index.html">next post</a>.</p>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">Perception</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">認識能力</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li></li><li><a href="/404.html" class="index"></a></li><li><a href="/index.html" class="index"></a></li><li><a href="/CV/index.html" class="index">CV</a></li><li><a href="/Blog/index.html" class="current">Blog</a></li><li class="soc"><a href="https://github.com/ZishunYu" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a class="a-post">Issues with SPICE Package and Solution</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-05-07</span></p><p class="post-abstract"></p><p><br></p>
+<p>I am recently doing a project which using reinforcement leanring to improve a NLP task, image captioning. In general, this task requires a machine to descripe image given to it. My project was inspired by the paper, <em>self-critical sequence training for image captioning</em> [@DBLP:journals/corr/RennieMMRG16] (SCST). Model in SCST directly optimizing a widely used NLP evaluation metrics <strong>CIDEr</strong> [@vedantam2015cider] and beats SOTA methods at that time.</p>
+<p>My interest was in trying some metrics which are reported better (maybe) than CIDEr. Because the reward function is very crucial for reinforcement learning. Therefore I choosed a varity of image captioning metrics to be directly optimized, including SPICE (semantic propositional image caption evaluation) [@anderson2016spice]. However, I encountered some issue when using this package for reinfocement learning. This post would be descripting the issue I encountered and my solution. For full report of my image captioning project, see <a href="2019/05/08/Self-critical/index.html">next post</a>.</p>
 <p>Before going to the details, just want to emphasize this pacakge was not orginally designed for reinforcement learning so you will only encountered them when you want use it for reinfocement learning. Otherwise it is <strong>PERFECT</strong>!</p>
 <p><br></p>
-<h3 id="semantic-propositional-image-caption-evaluation">Semantic propositional image caption evaluation</h3>
-<p>SPICE is a automatic image caption evalution metric which compares the semantic propositional content. Given a image <span class="math inline">\(I\)</span> with some references captions, usually generated by human, and a machine generated caption <span class="math inline">\(c\)</span>. The SPICE score, <span class="math inline">\(SPICE(c,S)\)</span>, indicate how good the machine-generated caption is.</p>
+<h3 id="Semantic-propositional-image-caption-evaluation"><a href="#Semantic-propositional-image-caption-evaluation" class="headerlink" title="Semantic propositional image caption evaluation"></a>Semantic propositional image caption evaluation</h3><p>SPICE is a automatic image caption evalution metric which compares the semantic propositional content. Given a image $I$ with some references captions, usually generated by human, and a machine generated caption $c$. The SPICE score, $SPICE(c,S)$, indicate how good the machine-generated caption is.  </p>
 <p><br></p>
-<h4 id="semantic-parsing">Semantic parsing</h4>
-<p>Before calculating the SPICE score, we need to parse the captions to scene graphs. Given a set of object classed <span class="math inline">\(C\)</span>, a set of relation <span class="math inline">\(R\)</span>, a set of attribute types <span class="math inline">\(A\)</span> and a caption <span class="math inline">\(c\)</span>, the scene graph is define as below:</p>
-<p><span class="math display">\[\begin{equation}
-  G(c) = \{O(c), E(c), K(c)\}
-\end{equation}\]</span> where <span class="math inline">\(O(c)\)</span> is the objects appeared in the caption <span class="math inline">\(c\)</span>, <span class="math inline">\(E(c) \subseteq O(c) \times R \times O(c)\)</span> is the relation types appeared in <span class="math inline">\(c\)</span> (relation between O(c)) and <span class="math inline">\(K(c) \subseteq O(c) \times A\)</span> is the attributes associated with objects <span class="math inline">\(O(c)\)</span> appeared in <span class="math inline">\(c\)</span>. Besides, there is no pre-defined objects, relation or attributes sets, the sets will be extended once new object/relation/attribute appears.</p>
-<p>For example, given a caption <span class="math inline">\(c\)</span>, <em>A young girl standing on top of a tennis court.</em>, the scene graph should be as shown below:</p>
-<p><font size="3">Table 1. semantic parsing demonstration</font></p>
+<h4 id="Semantic-parsing"><a href="#Semantic-parsing" class="headerlink" title="Semantic parsing"></a>Semantic parsing</h4><p>Before calculating the SPICE score, we need to parse the captions to scene graphs. Given a set of object classed $C$, a set of relation $R$, a set of attribute types $A$ and a caption $c$, the scene graph is define as below:</p>
+<p>\begin{equation}<br>  G(c) = {O(c), E(c), K(c)}<br>\end{equation}<br>where $O(c)$ is the objects appeared in the caption $c$, $E(c) \subseteq O(c) \times R \times O(c)$ is the relation types appeared in $c$ (relation between O(c)) and $K(c) \subseteq O(c) \times A$ is the attributes associated with objects $O(c)$ appeared in $c$. Besides, there is no pre-defined objects, relation or attributes sets, the sets will be extended once new object/relation/attribute appears.</p>
+<p>For example, given a caption $c$, <em>A young girl standing on top of a tennis court.</em>, the scene graph should be as shown below:</p>
+<font size="3">Table 1. semantic parsing demonstration</font>
+
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>caption</th>
-<th style="text-align: center;"><em>A young girl standing on top of a tennis court.</em></th>
+<th style="text-align:center"><em>A young girl standing on top of a tennis court.</em></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>O(c)</strong></td>
-<td style="text-align: center;">(girl), (court)</td>
+<td style="text-align:center">(girl), (court)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>E(c)</strong></td>
-<td style="text-align: center;">(girl, on-top-of, court)</td>
+<td style="text-align:center">(girl, on-top-of, court)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>K(c)</strong></td>
-<td style="text-align: center;">(girl, young), (girl, standing), (court, tennis)</td>
+<td style="text-align:center">(girl, young), (girl, standing), (court, tennis)</td>
 </tr>
 </tbody>
 </table>
-<p><br> Authors of SPICE define a binary matching operator <span class="math inline">\(\otimes\)</span> which return the matching tuples in two scene graphs. In order to evaluate the candidate and references similarity, authors take both precision <span class="math inline">\(P\)</span> and recall <span class="math inline">\(R\)</span> into consideration. The precision, recall and SPICE scores will be calculated as following:</p>
-<p><span class="math display">\[\begin{align}
-  P(c, S) &amp;= \frac {|T(G(c))\otimes T(G(S))|} {|T(G(c))|}\\
-  R(c, S) &amp;= \frac {|T(G(c))\otimes T(G(S))|} {|T(G(S))|}\\
-  SPICE(c,S) &amp;= F_1(c,S) = \frac{2 \times P(c,S) \times R(c,S)} {P(c,S) + R(c,S)}
-\end{align}\]</span></p>
-<p>where <span class="math inline">\(c\)</span> is the candidate caption and <span class="math inline">\(S\)</span> is the set of reference captions.</p>
+<p><br><br>Authors of SPICE define a binary matching operator $\otimes$ which return the matching tuples in two scene graphs. In order to evaluate the candidate and references similarity, authors take both precision $P$ and recall $R$ into consideration. The precision, recall and SPICE scores will be calculated as following:</p>
+<p>\begin{align}<br>  P(c, S) &amp;= \frac {|T(G(c))\otimes T(G(S))|} {|T(G(c))|}\<br>  R(c, S) &amp;= \frac {|T(G(c))\otimes T(G(S))|} {|T(G(S))|}\<br>  SPICE(c,S) &amp;= F_1(c,S) = \frac{2 \times P(c,S) \times R(c,S)} {P(c,S) + R(c,S)}<br>\end{align}</p>
+<p>where $c$ is the candidate caption and $S$ is the set of reference captions.</p>
 <p><br></p>
-<h4 id="issue-encountered">Issue encountered</h4>
-<p>I encountered some issue when directly optimizing SPICE score. There are two main issues, the frist one is the time efficiency and the second is that the SPICE ignores the repeated or duplicate tuples which will result our model generating sentence with repeating words or phrases.</p>
+<h4 id="Issue-encountered"><a href="#Issue-encountered" class="headerlink" title="Issue encountered"></a>Issue encountered</h4><p>I encountered some issue when directly optimizing SPICE score. There are two main issues, the frist one is the time efficiency and the second is that the SPICE ignores the repeated or duplicate tuples which will result our model generating sentence with repeating words or phrases.</p>
 <p><br></p>
-<h4 id="improve-the-time-efficiency">Improve the time efficiency</h4>
-<p>The default SPICE package is designed for evaluating the entire testing set at the same time. But in our application scenario, I need to calculate the SPICE score for a minibatch every iteration. At beginning, it would take more than 10 seconds to finish a interation which is not acceptable at all (since it should be trained for around <strong>400k</strong> iterations). Firstly, I modified the I/O interface. It would be orginally called as a subprocess every time I need to do a evaluation and therefore will initilized the standford pipeline frequently which is super time consuming. I modified the package as a sever and will be waiting for evaluating request until receiving an ending request. Besides, I noticed the package will frequently generate or re-generate some objects. So I modified the workflow, pre-generate all required objects when the server starts, it also reduces decent evaluating time. After modification, it takes less than 1 seconds to evaluate an iteratioin which is around 10 times faster and is able to finish the entire training, 40 epochs, within 5 days (although it is not super fast but at least acceptable compared to the default package).</p>
+<h4 id="Improve-the-time-efficiency"><a href="#Improve-the-time-efficiency" class="headerlink" title="Improve the time efficiency"></a>Improve the time efficiency</h4><p>The default SPICE package is designed for evaluating the entire testing set at the same time. But in our application scenario, I need to calculate the SPICE score for a minibatch every iteration. At beginning, it would take more than 10 seconds to finish a interation which is not acceptable at all (since it should be trained for around <strong>400k</strong> iterations). Firstly, I modified the I/O interface. It would be orginally called as a subprocess every time I need to do a evaluation and therefore will initilized the standford pipeline frequently which is super time consuming. I modified the package as a sever and will be waiting for evaluating request until receiving an ending request. Besides, I noticed the package will frequently generate or re-generate some objects. So I modified the workflow, pre-generate all required objects when the server starts, it also reduces decent evaluating time. After modification, it takes less than 1 seconds to evaluate an iteratioin which is around 10 times faster and is able to finish the entire training, 40 epochs, within 5 days (although it is not super fast but at least acceptable compared to the default package). </p>
 <p><br></p>
-<h4 id="penalty-on-duplicates-tuples">Penalty on duplicates tuples</h4>
-<p>As observed by <span class="citation" data-cites="DBLP:journals/corr/LiuZYG016">(Liu et al. <a href="#ref-DBLP:journals/corr/LiuZYG016" role="doc-biblioref">2016</a>)</span>, using reinforcement learning to directly optimize SPICE score will result a ungrammatical results, for example:</p>
-<p><font size="3">Table 2. ungrammatically captions when directly optimizing SPICE</font></p>
+<h4 id="Penalty-on-duplicates-tuples"><a href="#Penalty-on-duplicates-tuples" class="headerlink" title="Penalty on duplicates tuples"></a>Penalty on duplicates tuples</h4><p>As observed by [@DBLP:journals/corr/LiuZYG016], using reinforcement learning to directly optimize SPICE score will result a ungrammatical results, for example:</p>
+<font size="3">Table 2. ungrammatically captions when directly optimizing SPICE</font>
+
+
 <table>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 83%">
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Image</th>
-<th style="text-align: center;">Captioning (optimizing SPICE using SCST)</th>
+<th style="text-align:center">Captioning (optimizing SPICE using SCST)</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><img src="https://i.postimg.cc/G3P5FHSg/COCO-val2014-000000057363.jpg" width="60%" height="60%"></td>
-<td style="text-align: center;">a red double decker bus on a city street on a street with a bus on the street with a bus on the street in front of a bus on</td>
+<td style="text-align:center">a red double decker bus on a city street on a street with a bus on the street with a bus on the street in front of a bus on</td>
 </tr>
-<tr class="even">
+<tr>
 <td><img src="https://i.postimg.cc/028HcPTk/COCO-val2014-000000541924.jpg" width="60%" height="60%"></td>
-<td style="text-align: center;">a group of people walking down a street with a man on a street holding a traffic light and a traffic light on a city street with a city street</td>
+<td style="text-align:center">a group of people walking down a street with a man on a street holding a traffic light and a traffic light on a city street with a city street</td>
 </tr>
 </tbody>
 </table>
-<p><br> This is because the default SPICE package ignores and doesn't put penalty on the repeated tuples. In detail:</p>
-<p><font size="3">Table 3. SPICE score on captions with repeated scene graph tuples</font></p>
+<p><br><br>This is because the default SPICE package ignores and doesn’t put penalty on the repeated tuples. In detail:</p>
+<font size="3">Table 3. SPICE score on captions with repeated scene graph tuples</font>
+
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>candidate captions</th>
-<th style="text-align: center;">SPICE score</th>
+<th style="text-align:center">SPICE score</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>a kitchen and dining room and living room.</td>
-<td style="text-align: center;">0.129</td>
+<td style="text-align:center">0.129</td>
 </tr>
-<tr class="even">
+<tr>
 <td>a kitchen and dining room and living room and dining room.</td>
-<td style="text-align: center;">0.129</td>
+<td style="text-align:center">0.129</td>
 </tr>
 </tbody>
 </table>
 <table>
-<colgroup>
-<col style="width: 84%">
-<col style="width: 15%">
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>reference captions</th>
-<th style="text-align: center;"></th>
+<th style="text-align:center"></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>the room is empty other than the furniture.</td>
-<td style="text-align: center;">N/A</td>
+<td style="text-align:center">N/A</td>
 </tr>
-<tr class="even">
+<tr>
 <td>an open floor plan displays a modern kitchen, dining and living room arrangement.</td>
-<td style="text-align: center;">N/A</td>
+<td style="text-align:center">N/A</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>a kitchen, dining table and a living room looks like a small space.</td>
-<td style="text-align: center;">N/A</td>
+<td style="text-align:center">N/A</td>
 </tr>
-<tr class="even">
+<tr>
 <td>a small apartment is lit by modern style lamps.</td>
-<td style="text-align: center;">N/A</td>
+<td style="text-align:center">N/A</td>
 </tr>
 </tbody>
 </table>
-<p><br> Therefore, we add a simple penalty on the SPICE evaluation package, denote as penalty factor <span class="math inline">\(pf(c)\)</span>: <span class="math display">\[\begin{align}
-  &amp;pf(c) = 1-0.15(|T(G(c))| - |T(G(c))_{minimal}|)\\
-  &amp;SPICE_p(c,S) = pf(c)*SPICE(c,S)
-\end{align}\]</span> where <span class="math inline">\(T(G(c))_{minimal}\)</span> is the set removing all duplicate tuples and <span class="math inline">\(SPICE_p(c,S)\)</span> is the SPICE score with penalty and will be used in training (we use original package for testing). And a simple example is shown below:</p>
+<p><br><br>Therefore, we add a simple penalty on the SPICE evaluation package, denote as penalty factor $pf(c)$:<br>\begin{align}<br>  &amp;pf(c) = 1-0.15(|T(G(c))| - |T(G(c))_{minimal}|)\<br>  &amp;SPICE_p(c,S) = pf(c)*SPICE(c,S)<br>\end{align}<br>where $T(G(c))_{minimal}$ is the set removing all duplicate tuples and $SPICE_p(c,S)$ is the SPICE score with penalty and will be used in training (we use original package for testing). And a simple example is shown below:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>candidate captions</th>
-<th style="text-align: center;">SPICE score</th>
+<th style="text-align:center">SPICE score</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>a kitchen and dining room and living room.</td>
-<td style="text-align: center;">0.129</td>
+<td style="text-align:center">0.129</td>
 </tr>
-<tr class="even">
+<tr>
 <td>a kitchen and dining room and living room and dining room.</td>
-<td style="text-align: center;">0.110</td>
+<td style="text-align:center">0.110</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<h3 id="conclusion">Conclusion</h3>
-<p>After modification, it can be somehow used in my project, see next post, although it is not perfect yet. And the modified pacakge will be released soon. Again, just want to emphasize if you are not using reinforcement learning, no change need to be made, it is <strong>PERFECT</strong>.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>After modification, it can be somehow used in my project, see next post, although it is not perfect yet. And the modified pacakge will be released soon. Again, just want to emphasize if you are not using reinforcement learning, no change need to be made, it is <strong>PERFECT</strong>.</p>
 <p><br></p>
-<h3 id="bibliography" class="unnumbered">Bibliography</h3>
-<div id="refs" class="references" role="doc-bibliography">
-<div id="ref-anderson2016spice">
-<p>Anderson, Peter, Basura Fernando, Mark Johnson, and Stephen Gould. 2016. “Spice: Semantic Propositional Image Caption Evaluation.” In <em>European Conference on Computer Vision</em>, 382–98. Springer.</p>
-</div>
-<div id="ref-DBLP:journals/corr/LiuZYG016">
-<p>Liu, Siqi, Zhenhai Zhu, Ning Ye, Sergio Guadarrama, and Kevin Murphy. 2016. “Optimization of Image Description Metrics Using Policy Gradient Methods.” <em>CoRR</em> abs/1612.00370. <a href="http://arxiv.org/abs/1612.00370" target="_blank" rel="noopener">http://arxiv.org/abs/1612.00370</a>.</p>
-</div>
-<div id="ref-DBLP:journals/corr/RennieMMRG16">
-<p>Rennie, Steven J., Etienne Marcheret, Youssef Mroueh, Jarret Ross, and Vaibhava Goel. 2016. “Self-Critical Sequence Training for Image Captioning.” <em>CoRR</em> abs/1612.00563. <a href="http://arxiv.org/abs/1612.00563" target="_blank" rel="noopener">http://arxiv.org/abs/1612.00563</a>.</p>
-</div>
-<div id="ref-vedantam2015cider">
-<p>Vedantam, Ramakrishna, C Lawrence Zitnick, and Devi Parikh. 2015. “Cider: Consensus-Based Image Description Evaluation.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 4566–75.</p>
-</div>
-</div>
-<p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://www.zishun.xyz/Blog/2019/05/07/SPICE/%20Zishun's Blog%20Issues with SPICE Package and Solution" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/Blog/2019/05/08/Self-critical/" title="Self-critical Sequence Training for Image Captioning with SPICE"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: Self-critical Sequence Training for Image Captioning with SPICE</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/Blog/2018/11/11/2018-INFORMS/" title="2018 INFORMS Annual Meeting Talk">Next post: 2018 INFORMS Annual Meeting Talk&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
+<h3 id="Bibliography"><a href="#Bibliography" class="headerlink" title="Bibliography"></a>Bibliography</h3><p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://www.zishun.xyz/Blog/2019/05/07/SPICE/%20Zishun's Blog%20Issues with SPICE Package and Solution" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/Blog/2019/05/08/Self-critical/" title="Self-critical Sequence Training for Image Captioning with SPICE"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: Self-critical Sequence Training for Image Captioning with SPICE</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/Blog/2018/11/11/2018-INFORMS/" title="2018 INFORMS Annual Meeting Talk">Next post: 2018 INFORMS Annual Meeting Talk&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
