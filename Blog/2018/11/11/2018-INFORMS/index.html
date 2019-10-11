@@ -1,34 +1,26 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zishun Yu"><title>2018 INFORMS Annual Meeting Talk · Zishun's Blog</title><meta name="description" content="I was giving a talk on 2018 INFORMS annual meeting, Nov 04, 2018, at Phoenix, AZ. Topic of this talk is Learning-Based Automatic Controller Design for"><meta name="keywords" content><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML" async></script><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">Perception</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">認識能力</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li></li><li><a href="/index.html"></a></li><li><a href="/Blog/index.html" class="current">Blog</a></li><li><a href="/CV/index.html">CV</a></li><li class="soc"><a href="https://github.com/ZishunYu" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a class="a-post">2018 INFORMS Annual Meeting Talk</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2018-11-11</span></p><p class="post-abstract"></p><p><br></p>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">Perception</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">認識能力</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li></li><li><a href="/404.html"></a></li><li><a href="/index.html"></a></li><li><a href="/CV/index.html">CV</a></li><li><a href="/Blog/index.html" class="current">Blog</a></li><li class="soc"><a href="https://github.com/ZishunYu" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a class="a-post">2018 INFORMS Annual Meeting Talk</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2018-11-11</span></p><p class="post-abstract"></p><p><br></p>
 <p>I was giving a talk on 2018 INFORMS annual meeting, Nov 04, 2018, at Phoenix, AZ. Topic of this talk is <strong>Learning-Based Automatic Controller Design for Mobile Robot Collision Free Navigation</strong>.</p>
 <p>In this study, we compared two different automatic controller design methods, evolutionary robotics and deep reinforcement learning, on the robot obstacles avoidance experiments. And specifically three different algrithoms, particle swarm optimazation (PSO), deep Q-network (DQN) and deep determistic policy gradient (DDPG).</p>
 <p><br></p>
-<h3 id="introduction">Introduction</h3>
-<h4 id="controller-design-methods">Controller Design Methods</h4>
-<p>Behavior-based design method is a method which controller has to be iteratively adjusted until desired behavior is obtained. An example is finite state machine. However, this type of approach require designer equiped with specific domain knowledges and need heavy tuning work. Hence we are interested in automatic design methods.</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h4 id="Controller-Design-Methods"><a href="#Controller-Design-Methods" class="headerlink" title="Controller Design Methods"></a>Controller Design Methods</h4><p>Behavior-based design method is a method which controller has to be iteratively adjusted until desired behavior is obtained. An example is finite state machine. However, this type of approach require designer equiped with specific domain knowledges and need heavy tuning work. Hence we are interested in automatic design methods.</p>
 <p>Automatic design method is an approach automatically generate behaviors without the explicit intervention of the developer. This method include both evolutionary robotics and (deep) reinforcement learning. It provide alternatives which can address the previously mentioned chanllanges.</p>
 <p>For example, evolutionary robotics can automatically synthesize robotic controllers in large search spaces, and find innovative solutions not foreseen by human designers. Learning process have the potential to be implemented fully on-board, enabling automatic adaptation to the underlying hardware and environment</p>
 <p><br></p>
-<h4 id="evolutionary-robotics">Evolutionary Robotics</h4>
-<p>Evolutionary Robotics applies evolutionary computation techniques such as particle swarm optimazation, genetic algrithom and bees algorithm, to automatically evolve and design controllers. Based on our previous work, particle swarm outperform both genetic and bees algrithoms when applied to evolutionary controller. Hence, PSO is selected to be compared with (deep) reinforcement learning controllers.</p>
+<h4 id="Evolutionary-Robotics"><a href="#Evolutionary-Robotics" class="headerlink" title="Evolutionary Robotics"></a>Evolutionary Robotics</h4><p>Evolutionary Robotics applies evolutionary computation techniques such as particle swarm optimazation, genetic algrithom and bees algorithm, to automatically evolve and design controllers. Based on our previous work, particle swarm outperform both genetic and bees algrithoms when applied to evolutionary controller. Hence, PSO is selected to be compared with (deep) reinforcement learning controllers.</p>
 <p><br></p>
-<h4 id="deep-reinforcement-learning">Deep Reinforcement Learning</h4>
-<p>%TODO</p>
+<h4 id="Deep-Reinforcement-Learning"><a href="#Deep-Reinforcement-Learning" class="headerlink" title="Deep Reinforcement Learning"></a>Deep Reinforcement Learning</h4><p>%TODO</p>
 <p><br></p>
-<h3 id="experiements">Experiements</h3>
-<h4 id="experiements-overview">Experiements Overview</h4>
-<ul>
+<h3 id="Experiements"><a href="#Experiements" class="headerlink" title="Experiements"></a>Experiements</h3><h4 id="Experiements-Overview"><a href="#Experiements-Overview" class="headerlink" title="Experiements Overview"></a>Experiements Overview</h4><ul>
 <li>Robots avoidance probelm has been selected as our benchmark for comparing different controllers</li>
 <li>Khepera III mobile robot is a differential wheeled vehicle which is equiped with 9 distance sensors</li>
 <li>The robots are distributed and navigated in a square arena. The walls and other robots are considered as obstacles.</li>
 </ul>
-<center>
-<img src="https://i.postimg.cc/JhXfyyRc/Simulator.png" width="70%" height="70%">
-</center>
+<center><br>    <img src="https://i.postimg.cc/JhXfyyRc/Simulator.png" width="70%" height="70%"><br></center>
+
 <p><br></p>
-<h4 id="fitnessreward-function">Fitness/Reward Function</h4>
-<p>For consistency, the same function is used for both fitness function (for evolutionary robotics) and reward function (for deep reinforcement learning) and the function is shown below.</p>
-<p><span class="math display">\[F=V\times (1-\sqrt{\Delta v})\times (1-i)\]</span></p>
+<h4 id="Fitness-Reward-Function"><a href="#Fitness-Reward-Function" class="headerlink" title="Fitness/Reward Function"></a>Fitness/Reward Function</h4><p>For consistency, the same function is used for both fitness function (for evolutionary robotics) and reward function (for deep reinforcement learning) and the function is shown below.</p>
+<p>$$F=V\times (1-\sqrt{\Delta v})\times (1-i)$$</p>
 <ul>
 <li>V : Average left and right wheel speed</li>
 <li>∆v : Speed difference for left and right wheels</li>
@@ -36,16 +28,9 @@
 <li>High value of F for the robot which moves fast, turns as little as possible, and spends less time close to obstacles</li>
 </ul>
 <p><br></p>
-<h4 id="controller-details">Controller Details</h4>
-<table>
-<colgroup>
-<col style="width: 8%">
-<col style="width: 25%">
-<col style="width: 24%">
-<col style="width: 41%">
-</colgroup>
+<h4 id="Controller-Details"><a href="#Controller-Details" class="headerlink" title="Controller Details"></a>Controller Details</h4><table>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
 <th>PSO</th>
 <th>DQN</th>
@@ -53,35 +38,34 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>Input</strong></td>
-<td>distance sensor values, previous speeds and bias</td>
+<td>distance sensor values,  previous speeds and bias</td>
 <td>distances sensor values</td>
 <td>distances sensor values</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Output</strong></td>
 <td>left/right wheel speed</td>
-<td>Q-values for all left/right wheel speed pairs</td>
+<td>Q-values for all left/right  wheel speed pairs</td>
 <td>left/right wheel speed</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong># of Networks</strong></td>
 <td>1</td>
 <td>1</td>
 <td>2 (Actor, Critic)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Network Duties</strong></td>
-<td>mapping input values to output directly</td>
+<td>mapping input values  to output directly</td>
 <td>mapping state&amp;action to Q-value</td>
 <td>Critic: mapping state&amp;action to Q-value Actor: mapping state to continous actions</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<h3 id="results">Results</h3>
-<p>Due to different training/evolving time consumption, the training process were not compared. Each algorithm will be tested under the setting below.</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p>Due to different training/evolving time consumption, the training process were not compared. Each algorithm will be tested under the setting below.</p>
 <ul>
 <li>Arena size: 1.5 meters</li>
 <li>Number of robots NR: 4 or 10</li>
@@ -93,72 +77,70 @@
 <p><br></p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
-<th style="text-align: center;"># of Robots</th>
-<th style="text-align: center;">Average</th>
-<th style="text-align: center;">Std.</th>
-<th style="text-align: center;">Maximum</th>
-<th style="text-align: center;">Minimum</th>
+<th style="text-align:center"># of Robots</th>
+<th style="text-align:center">Average</th>
+<th style="text-align:center">Std.</th>
+<th style="text-align:center">Maximum</th>
+<th style="text-align:center">Minimum</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>PSO</strong></td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">0.2224</td>
-<td style="text-align: center;">0.1198</td>
-<td style="text-align: center;">0.5992</td>
-<td style="text-align: center;">0.0831</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.2224</td>
+<td style="text-align:center">0.1198</td>
+<td style="text-align:center">0.5992</td>
+<td style="text-align:center">0.0831</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>DQN</strong></td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">0.1735</td>
-<td style="text-align: center;">0.1065</td>
-<td style="text-align: center;">0.2893</td>
-<td style="text-align: center;">0.1065</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.1735</td>
+<td style="text-align:center">0.1065</td>
+<td style="text-align:center">0.2893</td>
+<td style="text-align:center">0.1065</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>DDPG</strong></td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">0.6158</td>
-<td style="text-align: center;">0.1195</td>
-<td style="text-align: center;">0.9953</td>
-<td style="text-align: center;">0.4336</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.6158</td>
+<td style="text-align:center">0.1195</td>
+<td style="text-align:center">0.9953</td>
+<td style="text-align:center">0.4336</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>PSO</strong></td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">0.3172</td>
-<td style="text-align: center;">0.0763</td>
-<td style="text-align: center;">0.5072</td>
-<td style="text-align: center;">0.2214</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.3172</td>
+<td style="text-align:center">0.0763</td>
+<td style="text-align:center">0.5072</td>
+<td style="text-align:center">0.2214</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>DQN</strong></td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">0.1922</td>
-<td style="text-align: center;">0.0985</td>
-<td style="text-align: center;">0.4006</td>
-<td style="text-align: center;">0.0808</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.1922</td>
+<td style="text-align:center">0.0985</td>
+<td style="text-align:center">0.4006</td>
+<td style="text-align:center">0.0808</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>DDPG</strong></td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">0.6856</td>
-<td style="text-align: center;">0.1894</td>
-<td style="text-align: center;">0.9681</td>
-<td style="text-align: center;">0.4749</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.6856</td>
+<td style="text-align:center">0.1894</td>
+<td style="text-align:center">0.9681</td>
+<td style="text-align:center">0.4749</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p>A video demo of DDPG controller with 4 robots in arena is shown below,</p>
-<center>
-<img src="https://i.postimg.cc/bNFh5DLp/ddpg-demo.gif" width="70%" height="70%">
-</center>
+<center><br>    <img src="https://i.postimg.cc/bNFh5DLp/ddpg-demo.gif" width="70%" height="70%"><br></center>
+
 <p><br></p>
-<h3 id="conclusion">Conclusion</h3>
-<p>The conculusion we draw is that DDPG outperform both PSO and DQN in our experiments and have a decent result in terms of collision free navigation.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>The conculusion we draw is that DDPG outperform both PSO and DQN in our experiments and have a decent result in terms of collision free navigation. </p>
 <p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://www.zishun.xyz/Blog/2018/11/11/2018-INFORMS/%20Zishun's Blog%202018 INFORMS Annual Meeting Talk" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/Blog/2019/05/07/SPICE/" title="Issues with SPICE Package and Solution"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: Issues with SPICE Package and Solution</a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://www.zishun.xyz" rel="noopener noreferrer">Zishun Yu</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
